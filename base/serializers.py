@@ -4,4 +4,4 @@ from .models import Advocate
 class AdvocateSerializer(ModelSerializer):
     class Meta:
         model = Advocate
-        field = '__all__'
+        fields = '__all__'
