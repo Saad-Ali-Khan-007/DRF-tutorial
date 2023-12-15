@@ -2,8 +2,8 @@ from django.shortcuts import render,redirect
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Advocate
-from .serializers import AdvocateSerializer
+from .models import Advocate,Company
+from .serializers import AdvocateSerializer,CompanySerializer
 from django.db.models import Q
 # Create your views here.
 @api_view(['GET'])
@@ -54,5 +54,11 @@ def advocate_detail(request,username):
         advocate.delete()
         return Response('Advocate deleted Succesfully')
 
+
+@api_view(['GET'])
+def company_list(request):
+    company = Company.objects.all()
+    serializer = CompanySerializer(company, many=True)
+    return Response(serializer.data)
     
 
